@@ -238,7 +238,7 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
       </div>
       <div>
         <h3>Nettsiden</h3>
-        <p>Siden bruker ingen informasjonskapsler (cookies) og ingen sporing eller statistikkverktøy. Den driftes av GitHub Pages, som registrerer IP-adresser i serverlogger. Skrifttypene hentes fra Google Fonts, som da får IP-adressen din.</p>
+        <p>Siden bruker ingen informasjonskapsler (cookies) og ingen sporing. Vi teller hvor mange ganger siden blir vist per dag, uten å lagre IP-adresse eller noe annet som kan knyttes til deg. Den driftes av GitHub Pages, som registrerer IP-adresser i serverlogger. Skrifttypene hentes fra Google Fonts, som da får IP-adressen din.</p>
       </div>
       <div>
         <h3>Dine rettigheter</h3>
@@ -478,6 +478,21 @@ document.addEventListener("submit", async ev => {
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Besøksteller: sender ett anonymt signal per sidevisning til Apps Script, som teller opp per dag
+   i fanen «Besøk» i regnearket. Ingen informasjonskapsler, ingen IP-adresse, ingenting om den som besøker.
+   Egne besøk telles ikke etter at du én gang har åpnet siden med ?ikketell på slutten av adressen
+   (?tell slår tellingen på igjen i den nettleseren). */
+(function(){
+  try {
+    const q = new URLSearchParams(location.search);
+    if (q.has("ikketell")) localStorage.setItem("valdresbok_ikketell", "1");
+    if (q.has("tell")) localStorage.removeItem("valdresbok_ikketell");
+    if (localStorage.getItem("valdresbok_ikketell")) return;
+  } catch (e) {}
+  if (I_UTKAST || !FORLAG.pameldingUrl || !navigator.sendBeacon) return;
+  navigator.sendBeacon(FORLAG.pameldingUrl, new URLSearchParams({ type: "besok" }));
+})();
 
 /* E-post: settes sammen her, så adressen ikke står hel i kildekoden */
 function epost(){ return FORLAG.epostNavn + String.fromCharCode(64) + FORLAG.epostDomene; }
