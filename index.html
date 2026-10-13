@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="nb"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Valdresbok.no</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bitter:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
@@ -106,6 +106,14 @@ section h2{font-size:clamp(1.6rem,3.5vw,2.2rem);margin-bottom:8px}
 .two h3{font-size:1.1rem;margin-bottom:10px}
 .two p{max-width:52ch}
 .isbn{font-variant-numeric:tabular-nums;white-space:nowrap}
+.small{font-size:.85rem;color:var(--cream-dim);margin-top:10px}
+.privacy a{color:var(--cream-dim);text-underline-offset:3px}
+.signup .check{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--cream);cursor:pointer;line-height:1.4}
+.check input{width:18px;height:18px;margin:1px 0 0;flex:0 0 auto;accent-color:var(--accent)}
+.legal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px 28px}
+.legal h3{font-size:1rem;margin-bottom:8px}
+.legal p{font-size:.92rem;max-width:58ch}
+.legal p + p{margin-top:8px}
 
 /* Omslag i stort format */
 .cover{cursor:zoom-in}
@@ -187,10 +195,40 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
       <div>
         <h3>Signert eksemplar</h3>
         <p>Send en e-post til <a class="epost" href="#kontakt">post (krøllalfa) valdresbok.no</a> med navn, adresse og hvem boka skal signeres til. 279 kr + porto, betales med Vipps. Boka sendes fra Leira, som regel samme uke.</p>
+        <p class="small">Bøker med personlig dedikasjon har fått et personlig preg og har derfor ikke angrerett (angrerettloven § 22 b). Signerte bøker uten dedikasjon har 14 dagers angrerett fra du mottar boka. Er det feil på boka, ordner vi det, uansett.</p>
       </div>
       <div>
         <h3>Bokhandlere</h3>
         <p>Bokhandlere bestiller på ISBN. Hytteforeningen som erklærte seg selvstendig: <span class="isbn">978-82-8451-684-4</span>. Spørsmål om partier eller arrangementer går til samme adresse.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="personvern" class="legal">
+    <h2>Personvern</h2>
+    <p class="lead">Kort og ærlig om hva som skjer med opplysningene dine.</p>
+    <div class="legal-grid">
+      <div>
+        <h3>Hvem er ansvarlig</h3>
+        <p>Valdresbok.no er et merke under Eggum AS, org.nr. 991&nbsp;554&nbsp;750, Garlivegen 311, 2920 Leira i Valdres. Eggum AS er behandlingsansvarlig. Spørsmål om personvern sendes til <a class="epost" href="#kontakt">post (krøllalfa) valdresbok.no</a>.</p>
+      </div>
+      <div>
+        <h3>Beskjed når en bok kommer</h3>
+        <p>Når du melder deg på, lagrer vi e-postadressen din, hvilken bok du venter på og tidspunktet. Vi bruker den bare til å sende deg én beskjed når boka lanseres, og sletter den når beskjeden er sendt.</p>
+        <p>Krysser du av for beskjed om nye bøker, lagrer vi i tillegg det valget og bruker adressen til å gi beskjed hver gang en ny bok fra Valdresbok.no kommer, til du melder deg av. Ikke noe nyhetsbrev, bare lanseringer. Grunnlaget er samtykket ditt i begge tilfeller (personvernforordningen art. 6 nr. 1 a).</p>
+        <p>Påmeldingene lagres i et regneark hos Google. Google kan behandle opplysninger i USA, under EU–US Data Privacy Framework.</p>
+      </div>
+      <div>
+        <h3>Signerte bøker</h3>
+        <p>Når du bestiller en signert bok, bruker vi navn og adresse til å sende boka og e-posten til å svare deg. Opplysninger som inngår i regnskapet, oppbevares så lenge bokføringsloven krever, i dag fem år.</p>
+      </div>
+      <div>
+        <h3>Nettsiden</h3>
+        <p>Siden bruker ingen informasjonskapsler (cookies) og ingen sporing eller statistikkverktøy. Den driftes av GitHub Pages, som registrerer IP-adresser i serverlogger. Skrifttypene hentes fra Google Fonts, som da får IP-adressen din.</p>
+      </div>
+      <div>
+        <h3>Dine rettigheter</h3>
+        <p>Du kan når som helst be om innsyn i, retting av eller sletting av opplysningene dine, og trekke samtykket tilbake, ved å sende en e-post. Hver beskjed vi sender har også en enkel måte å melde seg av på. Mener du at vi behandler opplysningene dine i strid med regelverket, kan du klage til <a href="https://www.datatilsynet.no" target="_blank" rel="noopener">Datatilsynet</a>.</p>
       </div>
     </div>
   </section>
@@ -199,8 +237,8 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
 <dialog id="lys" aria-label="Bokomslag"><div class="lys-inner" id="lys-inner"></div></dialog>
 
 <footer id="kontakt">
-  <span><a class="epost" href="#kontakt">post (krøllalfa) valdresbok.no</a></span>
-  <span>Valdresbok.no – Leira i Valdres · <span id="year"></span></span>
+  <span><a class="epost" href="#kontakt">post (krøllalfa) valdresbok.no</a> · <a href="#personvern">Personvern</a></span>
+  <span>Valdresbok.no er et merke under Eggum AS · Org.nr. 991&nbsp;554&nbsp;750 · Garlivegen 311, 2920 Leira i Valdres · © <span id="year"></span></span>
 </footer>
 </div>
 
@@ -369,7 +407,8 @@ function signupHTML(b, idPrefix){
           <input id="${id}" type="email" name="email" required placeholder="din@epost.no" autocomplete="email" inputmode="email">
           <button class="btn primary" type="submit">Gi meg beskjed</button>
         </div>
-        <p class="privacy">Adressen brukes bare til å gi beskjed når en ny bok lanseres. Ingen nyhetsbrev, ingen videresending.</p>
+        <label class="check"><input type="checkbox" name="flere" value="ja"> Gi meg også beskjed når nye bøker fra Valdresbok.no kommer</label>
+        <p class="privacy">Uten avkrysning får du én beskjed når boka kommer, og så slettes adressen. Med avkrysning får du beskjed når nye bøker kommer, til du melder deg av. Ingen nyhetsbrev, ingen videresending. <a href="#personvern" data-close>Les om personvern</a>.</p>
         <p class="status" aria-live="polite"></p>
       </form>`;
 }
@@ -393,17 +432,17 @@ function signupHTML(b, idPrefix){
 /* Påmelding. På nettsiden: sendes til Google Sheets (Apps Script). I Claude-utkastet (der window.claude finnes): artefaktens database. */
 const I_UTKAST = !!window.claude?.use;
 let dbPromise = I_UTKAST ? window.claude.use("db") : Promise.resolve(null);
-async function lagrePamelding(email, bookId, bookTitle) {
+async function lagrePamelding(email, bookId, bookTitle, flereBoker) {
   const created = new Date().toISOString();
   if (FORLAG.pameldingUrl && !I_UTKAST) {
     await fetch(FORLAG.pameldingUrl, { method: "POST", mode: "no-cors",
-      body: new URLSearchParams({ epost: email, bok: bookTitle, bokId: bookId, tidspunkt: created }) });
+      body: new URLSearchParams({ epost: email, bok: bookTitle, bokId: bookId, tidspunkt: created, flereBoker: flereBoker ? "ja" : "nei" }) });
     return;
   }
   const db = await dbPromise;
   if (!db) throw new Error("ingen lagring tilgjengelig");
   const docId = (bookId + "__" + email).replace(/[^A-Za-z0-9_\-.~:@+]/g, "_");
-  await db.collection("signups").doc(docId).set({ email, bookId, bookTitle, created });
+  await db.collection("signups").doc(docId).set({ email, bookId, bookTitle, created, flereBoker: !!flereBoker });
 }
 document.addEventListener("submit", async ev => {
     const form = ev.target.closest("form[data-book]");
@@ -415,9 +454,9 @@ document.addEventListener("submit", async ev => {
     const book = BOKER.find(b => b.id === bookId);
     status.className = "status"; status.textContent = "Lagrer …";
     try {
-      await lagrePamelding(email, bookId, book ? fullTitle(book) : bookId);
+      await lagrePamelding(email, bookId, book ? fullTitle(book) : bookId, form.flere.checked);
       status.className = "status ok"; status.textContent = "Notert. Du hører fra oss når boka er klar.";
-      form.email.value = "";
+      form.email.value = ""; form.flere.checked = false;
     } catch (e) {
       status.className = "status err";
       status.textContent = "Fikk ikke lagret adressen. Send en e-post til " + epost() + " i stedet, så ordner vi det for hånd.";
