@@ -67,8 +67,10 @@ section h2{font-size:clamp(1.6rem,3.5vw,2.2rem);margin-bottom:8px}
 .card .sub{font-style:italic;color:var(--cream-dim);font-size:.95rem;margin-top:6px}
 .card .when{display:inline-block;margin-top:10px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(232,178,58,.5);border-radius:999px;padding:2px 10px}
 .card .text{margin-top:10px;font-size:.95rem}
-.card form{grid-column:1/-1;display:grid;gap:8px;margin-top:6px;border-top:1px solid var(--line);padding-top:14px}
-.card label{font-size:.85rem;color:var(--cream-dim)}
+.signup{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:14px}
+.signup label{font-size:.85rem;color:var(--cream-dim)}
+.card .signup{grid-column:1/-1;margin-top:6px}
+.lys-inner .signup{margin-top:20px;max-width:46ch}
 .row{display:flex;gap:8px;flex-wrap:wrap}
 .row input{flex:1 1 160px;min-width:0;font:inherit;font-size:.95rem;padding:9px 12px;border-radius:4px;border:1px solid var(--line);background:rgba(7,17,40,.6);color:var(--cream)}
 .row input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
@@ -166,7 +168,7 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
 
   <section id="kommer">
     <h2>Kommer</h2>
-    <p class="lead">Bøkene under er ferdig skrevet og venter på trykkeriet. Legg igjen e-postadressen, så får du én beskjed den dagen boka finnes. Ikke én til.</p>
+    <p class="lead">Bøkene under er skrevet og på vei gjennom sluttredigering, redaktørrunder og trykking. Legg igjen e-postadressen, så får du én beskjed den dagen boka finnes.</p>
     <div class="coming" id="coming-list"></div>
   </section>
 
@@ -184,7 +186,7 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
     <div class="two">
       <div>
         <h3>Signert eksemplar</h3>
-        <p>Send en e-post til <a href="mailto:post@valdresbok.no">post@valdresbok.no</a> med navn, adresse og hvem boka skal signeres til. 279 kr + porto, betales med Vipps. Boka sendes fra Leira, som regel samme uke.</p>
+        <p>Send en e-post til <a class="epost" href="#kontakt">post (krøllalfa) valdresbok.no</a> med navn, adresse og hvem boka skal signeres til. 279 kr + porto, betales med Vipps. Boka sendes fra Leira, som regel samme uke.</p>
       </div>
       <div>
         <h3>Bokhandlere</h3>
@@ -197,7 +199,7 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
 <dialog id="lys" aria-label="Bokomslag"><div class="lys-inner" id="lys-inner"></div></dialog>
 
 <footer id="kontakt">
-  <span><a href="mailto:post@valdresbok.no">post@valdresbok.no</a></span>
+  <span><a class="epost" href="#kontakt">post (krøllalfa) valdresbok.no</a></span>
   <span>Valdresbok.no – Leira i Valdres · <span id="year"></span></span>
 </footer>
 </div>
@@ -214,7 +216,9 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
 const FORLAG = {
   navn: "Valdresbok.no",
   serie: "Folk som ikke gir seg",
-  epost: "post@valdresbok.no",
+  // E-postadressen står delt opp, så enkle skrapere ikke finner den. Den settes sammen i nettleseren.
+  epostNavn: "post",
+  epostDomene: "valdresbok.no",
   sted: "Leira i Valdres",
   pris: "279 kr",
   // Google Sheets: nettapp-lenka fra Apps Script (…/exec). Påmeldingene havner som rader i regnearket.
@@ -247,11 +251,21 @@ const BOKER = [
     },
   },
   {
+    id: "en-sekk-rug",
+    tittel: "Én sekk rug",
+    undertittel: "Kommunene som ikke ville slå seg sammen, men måtte likevel",
+    humorlinje: "Uenige siden 1740. Nå med felles rådhus.",
+    status: "kommer",
+    lanseres: "Desember 2026",
+    omslag: "img/en-sekk-rug.jpg",
+    kort: "Nord-Aurdal og Sør-Aurdal har vært uvenner siden uåret 1740, da kongen sendte én sekk rug til hele prestegjeldet. Begge bygdene vet at den ble stjålet av de andre. I mars 2027 får ordførerne beskjed om at kommunene skal slås sammen, og det eneste stedet de går med på å møtes, er kjøkkenet til en lærerinne på nittisju, der kommunegrensa går tvers over gulvet.",
+  },
+  {
     id: "birkebeiner",
     tittel: "Mannen som ble borte i Birkebeinerrennet i 1958 og kom i mål i 2027",
     humorlinje: "«Det har vært en lang tur. Man går seg litt bort i uvær.»",
     status: "kommer",
-    lanseres: "Desember 2026",
+    lanseres: "Februar 2027",
     omslag: "img/birkebeiner.jpg",
     kort: "Lørdag 20. mars 2027 kommer en 91 år gammel mann på treski i mål i Birkebeinerrennet. Han startet i 1958. Arnfinn Løkken fra Åmot har startnummer 88, en sekk på nøyaktig 3,5 kilo og ett ønske: å få tiden sin registrert. Snart lurer Birken, Skiforbundet og Folkeregisteret på det samme: Har en mann som har brukt 69 år, fullført?",
   },
@@ -259,7 +273,7 @@ const BOKER = [
     id: "bonden",
     tittel: "Bonden som skrev til himmelen",
     humorlinje: "Beskjeden var sendt. Den var bare ikke lest.",
-    status: "kommer",
+    status: "skjult",
     lanseres: "Februar 2027",
     omslag: "img/bonden.jpg",
     kort: "I førti år har en bonde på Andøya slått ett ord i året i jordet sitt. Ingen på bakken har lest dem. Så flyr en dronefotograf fra Valdres over Bleik for å ta bilder av en ny vei. I ortofotoet står det SIGNE, med førti meter høye bokstaver av uslått gras. Snart har bygda, NRK, ufoforumet og Landbruksdirektoratet hver sin teori. Birger Nordmo, 83, sier ingenting.",
@@ -283,16 +297,6 @@ const BOKER = [
     lanseres: "2027",
     omslag: null,
     kort: "En rakfiskprodusent i Valdres nekter å si hvor fisken er lagret, og hele bygda bestemmer seg for å finne det ut. Forhistorien følger tyven Hulabakken og tyvegodset som skal ligge i en hule ved Gråkampen.",
-  },
-  {
-    id: "en-sekk-rug",
-    tittel: "Én sekk rug",
-    undertittel: "Kommunene som ikke ville slå seg sammen, men måtte likevel",
-    humorlinje: "Uenige siden 1740. Nå med felles rådhus.",
-    status: "skjult",
-    lanseres: "2027",
-    omslag: null,
-    kort: "To nabokommuner i Valdres har kranglet siden 1740 og får beskjed om å bli én. Striden står om navnet, rådhuset og en sekk rug ingen lenger husker hvem som skylder hvem.",
   },
 ];
 /* ===================== slutt på innhold ===================== */
@@ -355,6 +359,21 @@ function buyHTML(b){
     </article>`).join("");
 })();
 
+/* Påmeldingsskjema – brukes både på kortene under Kommer og i det store vinduet */
+function signupHTML(b, idPrefix){
+  const id = idPrefix + esc(b.id);
+  return `
+      <form class="signup" data-book="${esc(b.id)}">
+        <label for="${id}">Få beskjed når den kommer</label>
+        <div class="row">
+          <input id="${id}" type="email" name="email" required placeholder="din@epost.no" autocomplete="email" inputmode="email">
+          <button class="btn primary" type="submit">Gi meg beskjed</button>
+        </div>
+        <p class="privacy">Adressen brukes bare til å gi beskjed når en ny bok lanseres. Ingen nyhetsbrev, ingen videresending.</p>
+        <p class="status" aria-live="polite"></p>
+      </form>`;
+}
+
 /* Kommer */
 (function(){
   const list = document.getElementById("coming-list");
@@ -367,15 +386,7 @@ function buyHTML(b){
         <span class="when">Lanseres ${esc(b.lanseres)}</span>
         <p class="text">${esc(b.kort)}</p>
       </div>
-      <form data-book="${esc(b.id)}">
-        <label for="ep-${esc(b.id)}">Få beskjed når den kommer</label>
-        <div class="row">
-          <input id="ep-${esc(b.id)}" type="email" name="email" required placeholder="din@epost.no" autocomplete="email" inputmode="email">
-          <button class="btn primary" type="submit">Gi meg beskjed</button>
-        </div>
-        <p class="privacy">Adressen brukes bare til å gi beskjed når en ny bok lanseres. Ingen nyhetsbrev, ingen videresending.</p>
-        <p class="status" aria-live="polite"></p>
-      </form>
+      ${signupHTML(b, "ep-")}
     </article>`).join("");
 })();
 
@@ -394,8 +405,9 @@ async function lagrePamelding(email, bookId, bookTitle) {
   const docId = (bookId + "__" + email).replace(/[^A-Za-z0-9_\-.~:@+]/g, "_");
   await db.collection("signups").doc(docId).set({ email, bookId, bookTitle, created });
 }
-document.querySelectorAll("form[data-book]").forEach(form => {
-  form.addEventListener("submit", async ev => {
+document.addEventListener("submit", async ev => {
+    const form = ev.target.closest("form[data-book]");
+    if (!form) return;
     ev.preventDefault();
     const status = form.querySelector(".status");
     const email = form.email.value.trim().toLowerCase();
@@ -408,12 +420,15 @@ document.querySelectorAll("form[data-book]").forEach(form => {
       form.email.value = "";
     } catch (e) {
       status.className = "status err";
-      status.textContent = "Fikk ikke lagret adressen. Send en e-post til " + FORLAG.epost + " i stedet, så ordner vi det for hånd.";
+      status.textContent = "Fikk ikke lagret adressen. Send en e-post til " + epost() + " i stedet, så ordner vi det for hånd.";
     }
-  });
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+/* E-post: settes sammen her, så adressen ikke står hel i kildekoden */
+function epost(){ return FORLAG.epostNavn + String.fromCharCode(64) + FORLAG.epostDomene; }
+document.querySelectorAll("a.epost").forEach(a => { a.href = "mailto:" + epost(); a.textContent = epost(); });
 
 /* Klikk på et omslag: vis boka stort. Stort bilde = omslag med "-stor" før filendelsen, lastes først ved klikk. */
 (function(){
@@ -435,7 +450,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
         <div class="text">${text}</div>
         ${b.status==="ute"
           ? `<div class="buy"><span class="price">${esc(FORLAG.pris)}</span>${buyHTML(b)}</div>`
-          : `<p class="notify" style="margin-top:16px"><a href="#kommer-${esc(b.id)}" class="btn primary" data-close>Få beskjed når den kommer</a></p>`}
+          : signupHTML(b, "lys-ep-")}
       </div>`;
     dlg.showModal();
   }
