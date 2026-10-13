@@ -1,0 +1,477 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Valdresbok.no</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bitter:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+/* Layout: one column under a night sky; the newest book opens the page like a cover, everything else is set like a back-cover text. */
+:root{
+  --sky:#0b1a3a;        /* marineblå nattehimmel */
+  --sky-deep:#071128;   /* dypere felt nederst */
+  --cream:#fff6e5;      /* krem tekst */
+  --cream-dim:#d9cfb8;  /* dempet krem til små ting */
+  --line:rgba(255,246,229,.18);
+  --card:rgba(255,246,229,.05);
+  --accent:#e8b23a;     /* lykt-gult, som lyset i vinduene på omslaget */
+  --accent-ink:#1a1206;
+  --display:'Alfa Slab One', 'Rockwell Extra Bold', Georgia, serif;
+  --body:'Bitter', Georgia, 'Times New Roman', serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--sky);color:var(--cream);font-family:var(--body);font-size:17px;line-height:1.6;position:relative;overflow-x:hidden}
+#sky{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,var(--sky) 0%,var(--sky) 60%,var(--sky-deep) 100%)}
+#sky canvas{width:100%;height:100%;display:block}
+.wrap{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding-inline:20px}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.1;margin:0;text-wrap:balance;letter-spacing:.01em}
+p{margin:0}
+.eyebrow{font-family:var(--body);font-style:italic;color:var(--cream-dim);font-size:1rem}
+
+/* Nav */
+header{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:22px 10px;border-bottom:1px solid var(--line)}
+.brand{font-family:var(--display);font-size:1.35rem;text-decoration:none;letter-spacing:.02em}
+.brand small{display:block;font-family:var(--body);font-style:italic;font-size:.85rem;color:var(--cream-dim);letter-spacing:0}
+nav{display:flex;gap:4px 18px;flex-wrap:wrap}
+nav a{text-decoration:none;font-size:.95rem;color:var(--cream-dim);padding-block:4px}
+nav a:hover,nav a:focus-visible{color:var(--cream);outline:none;text-decoration:underline;text-underline-offset:4px}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:40px;align-items:start;padding-block:48px 56px}
+.cover{width:100%;max-width:320px;aspect-ratio:135/215;border-radius:3px;box-shadow:0 18px 50px rgba(0,0,0,.55),0 2px 6px rgba(0,0,0,.4);display:block;object-fit:cover;background:var(--sky-deep)}
+.hero .eyebrow{margin-bottom:14px}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem)}
+.hero h1 .mid{display:block;font-family:var(--body);font-style:italic;font-size:.5em;line-height:1.3;margin-block:4px}
+.tagline{font-style:italic;font-size:1.15rem;color:var(--cream-dim);margin-top:14px}
+.blurb{margin-top:26px;max-width:62ch;display:grid;gap:14px}
+.blurb .hook{font-family:var(--display);font-size:1.15rem;line-height:1.35}
+.buy{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.price{font-family:var(--display);font-size:1.4rem;margin-right:8px}
+.btn{display:inline-block;text-decoration:none;font-family:var(--body);font-weight:600;font-size:.95rem;padding:10px 16px;border-radius:4px;border:1px solid var(--line);color:var(--cream);background:var(--card);transition:background .15s,border-color .15s}
+.btn:hover,.btn:focus-visible{background:rgba(255,246,229,.12);border-color:var(--cream-dim);outline:none}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary:hover,.btn.primary:focus-visible{background:#f2c35a}
+.meta{margin-top:18px;font-size:.85rem;color:var(--cream-dim);font-variant-numeric:tabular-nums}
+.next{margin-top:30px;font-style:italic}
+.next a{text-underline-offset:4px}
+
+/* Sections */
+section{padding-block:48px;border-top:1px solid var(--line)}
+section h2{font-size:clamp(1.6rem,3.5vw,2.2rem);margin-bottom:8px}
+.lead{max-width:62ch;color:var(--cream-dim);font-style:italic;margin-bottom:30px}
+
+/* Kommer */
+.coming{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px;display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;align-content:start;min-width:0}
+.card .cover{max-width:96px;border-radius:2px;box-shadow:0 8px 20px rgba(0,0,0,.5)}
+.card h3{font-size:1.05rem;line-height:1.25}
+.card .sub{font-style:italic;color:var(--cream-dim);font-size:.95rem;margin-top:6px}
+.card .when{display:inline-block;margin-top:10px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(232,178,58,.5);border-radius:999px;padding:2px 10px}
+.card .text{margin-top:10px;font-size:.95rem}
+.card form{grid-column:1/-1;display:grid;gap:8px;margin-top:6px;border-top:1px solid var(--line);padding-top:14px}
+.card label{font-size:.85rem;color:var(--cream-dim)}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row input{flex:1 1 160px;min-width:0;font:inherit;font-size:.95rem;padding:9px 12px;border-radius:4px;border:1px solid var(--line);background:rgba(7,17,40,.6);color:var(--cream)}
+.row input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.row .btn{flex:0 0 auto}
+.privacy{font-size:.78rem;color:var(--cream-dim)}
+.status{font-size:.9rem;min-height:1.4em}
+.status.ok{color:var(--accent)}
+.status.err{color:#f3a7a7}
+
+/* Placeholder cover for books without image yet */
+.cover.placeholder{display:grid;place-items:center;text-align:center;padding:14px 10px;font-family:var(--display);font-size:.72rem;line-height:1.2;color:var(--cream);background:
+  radial-gradient(circle at 30% 20%,rgba(255,246,229,.08),transparent 40%),
+  linear-gradient(180deg,#132650,#0b1a3a 70%,#07122a);border:1px solid var(--line)}
+.hero .cover.placeholder{font-size:1.4rem;padding:30px 24px}
+
+/* Bøkene */
+.books{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.book{display:grid;grid-template-columns:120px minmax(0,1fr);gap:18px;align-content:start;min-width:0;padding-block:6px}
+.book .cover{max-width:120px;border-radius:2px;box-shadow:0 10px 24px rgba(0,0,0,.5)}
+.book h3{font-size:1.1rem;line-height:1.25}
+.book .sub{font-style:italic;color:var(--cream-dim);font-size:.95rem;margin-top:6px}
+.book .text{margin-top:10px;font-size:.95rem}
+.book .when{display:inline-block;margin-top:10px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(232,178,58,.5);border-radius:999px;padding:2px 10px}
+.book .buy{margin-top:14px;gap:8px}
+.book .buy .btn{font-size:.85rem;padding:7px 12px}
+.book .price{font-size:1.1rem;margin-right:4px}
+.book .notify{margin-top:12px;font-size:.9rem}
+.book .notify a{text-underline-offset:4px}
+
+/* Forfatteren, Signert */
+.author{max-width:62ch;display:grid;gap:16px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px}
+.two h3{font-size:1.1rem;margin-bottom:10px}
+.two p{max-width:52ch}
+.isbn{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* Omslag i stort format */
+.cover{cursor:zoom-in}
+.cover.placeholder{cursor:default}
+dialog#lys{border:0;padding:0;background:transparent;max-width:min(96vw,980px);width:auto;color:var(--cream)}
+dialog#lys::backdrop{background:rgba(4,10,26,.88);backdrop-filter:blur(3px)}
+.lys-inner{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:32px;align-items:start;background:var(--sky);border:1px solid var(--line);border-radius:8px;padding:28px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lys-inner img{width:100%;max-width:380px;aspect-ratio:135/215;object-fit:cover;border-radius:3px;box-shadow:0 18px 50px rgba(0,0,0,.6);display:block;background:var(--sky-deep)}
+.lys-inner h3{font-size:clamp(1.3rem,3vw,1.9rem)}
+.lys-inner .sub{font-style:italic;color:var(--cream-dim);margin-top:8px}
+.lys-inner .text{margin-top:16px;display:grid;gap:12px;max-width:58ch}
+.lys-inner .when{display:inline-block;margin-top:12px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(232,178,58,.5);border-radius:999px;padding:2px 10px}
+.lys-close{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--cream);font:inherit;font-size:1.3rem;line-height:1;cursor:pointer}
+.lys-close:hover,.lys-close:focus-visible{background:rgba(255,246,229,.14);outline:none}
+@media (max-width:720px){
+  .lys-inner{grid-template-columns:1fr;gap:20px;padding:20px;padding-top:52px}
+  .lys-inner img{max-width:260px;margin:0 auto}
+}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding-block:30px 40px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.9rem;color:var(--cream-dim)}
+footer a{text-decoration:none}
+footer a:hover{text-decoration:underline;text-underline-offset:4px}
+.pending{padding-block:40px;border-top:1px solid var(--line);color:var(--cream-dim);font-style:italic}
+
+@media (max-width:720px){
+  .hero{grid-template-columns:1fr;gap:28px;padding-block:32px 40px}
+  .cover{max-width:240px}
+  .card{grid-template-columns:80px minmax(0,1fr)}
+  .card .cover{max-width:80px}
+  .book{grid-template-columns:96px minmax(0,1fr)}
+  .book .cover{max-width:96px}
+  .pending{display:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+<div id="sky"><canvas id="stars" aria-hidden="true"></canvas></div>
+
+<div class="wrap">
+<header>
+  <a class="brand" href="#top">Valdresbok.no<small>Folk som ikke gir seg</small></a>
+  <nav aria-label="Sider">
+    <a href="#boker">Bøkene</a>
+    <a href="#kommer">Kommer</a>
+    <a href="#forfatteren">Forfatteren</a>
+    <a href="#signert">Signerte bøker</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero" id="nyeste" aria-label="Nyeste bok"></section>
+
+  <section id="boker">
+    <h2>Bøkene</h2>
+    <p class="lead">Frittstående romaner. Hver bok veksler mellom nåtid og en forhistorie, som regel lagt til Valdres, og de to møtes mot slutten. Man kan lese dem i hvilken rekkefølge man vil. Forfatteren foretrekker at man leser alle.</p>
+    <div class="books" id="book-list"></div>
+  </section>
+
+  <section id="kommer">
+    <h2>Kommer</h2>
+    <p class="lead">Bøkene under er ferdig skrevet og venter på trykkeriet. Legg igjen e-postadressen, så får du én beskjed den dagen boka finnes. Ikke én til.</p>
+    <div class="coming" id="coming-list"></div>
+  </section>
+
+  <section id="forfatteren">
+    <h2>Forfatteren</h2>
+    <div class="author">
+      <p>Erik Eggum har aldri skrevet en roman før. Han anser det som en klar fordel: Han visste ikke hva som var umulig, og rakk derfor å gjøre det før noen fikk sagt ifra.</p>
+      <p>Han har vokst opp i Valdres og bor der fortsatt, en dal han kjenner godt nok til å dikte om den uten å bli tatt. Til daglig er han programmerer. Han flyr også drone og kartlegger Norge ovenfra, noe som har gitt ham et uvanlig godt overblikk og en viss forståelse for folk som ikke ser hva de holder på med.</p>
+      <p>Bøkene er skrevet i samarbeid med kunstig intelligens. Ideene, valgene og feilene er hans.</p>
+    </div>
+  </section>
+
+  <section id="signert">
+    <h2>Signerte bøker og forhandlere</h2>
+    <div class="two">
+      <div>
+        <h3>Signert eksemplar</h3>
+        <p>Send en e-post til <a href="mailto:post@valdresbok.no">post@valdresbok.no</a> med navn, adresse og hvem boka skal signeres til. 279 kr + porto, betales med Vipps. Boka sendes fra Leira, som regel samme uke.</p>
+      </div>
+      <div>
+        <h3>Bokhandlere</h3>
+        <p>Bokhandlere bestiller på ISBN. Hytteforeningen som erklærte seg selvstendig: <span class="isbn">978-82-8451-684-4</span>. Spørsmål om partier eller arrangementer går til samme adresse.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dialog id="lys" aria-label="Bokomslag"><div class="lys-inner" id="lys-inner"></div></dialog>
+
+<footer id="kontakt">
+  <span><a href="mailto:post@valdresbok.no">post@valdresbok.no</a></span>
+  <span>Valdresbok.no – Leira i Valdres · <span id="year"></span></span>
+</footer>
+</div>
+
+<script>
+/* =====================================================================
+   INNHOLD – alt som skal endres, endres her.
+   Legg til en ny bok ved å legge til et objekt i BOKER.
+   status: "ute" (til salgs), "kommer" (vises under Kommer) eller "skjult" (vises ikke).
+   lanseres: "Måned ÅÅÅÅ" – vises på kortet for kommende bøker.
+   omslag: filsti til bildet, eller null for midlertidig tekstomslag.
+   Lenker som er null vises ikke.
+   ===================================================================== */
+const FORLAG = {
+  navn: "Valdresbok.no",
+  serie: "Folk som ikke gir seg",
+  epost: "post@valdresbok.no",
+  sted: "Leira i Valdres",
+  pris: "279 kr",
+  // Google Sheets: nettapp-lenka fra Apps Script (…/exec). Påmeldingene havner som rader i regnearket.
+  pameldingUrl: "https://script.google.com/macros/s/AKfycbz9ahAGfPOBZTlLRX7p4r-gabBF9WWFlnpizfWGjK6mLYLMy8z3XSiZFTdtyngBPne2/exec",
+};
+
+const BOKER = [
+  {
+    id: "hytteforeningen",
+    tittel: "Hytteforeningen",
+    mellom: "som erklærte seg",
+    tittel2: "selvstendig",
+    humorlinje: "Fjorten hytter. Én vei. Null brøyting.",
+    status: "ute",
+    utgitt: "Oktober 2026",
+    isbn: "978-82-8451-684-4",
+    omslag: "img/hytteforeningen.jpg",
+    hook: "En pensjonert bankdirektør holder tilbake en brøyteregning på 4 380 kroner, og brøytemannen slutter å brøyte.",
+    tekst: [
+      "I stedet for å betale erklærer hytteforeningen selvråderett. På én vinter får fjorten hytter i Valdres grunnlov, flagg, valuta, grensestasjon og fem tusen statsborgere, de fleste i Brasil. Bare ikke brøytet vei.",
+      "Annethvert kapittel går tilbake til 1905, da en ung svensk landmåler blir værende i Etnedal mens unionen ryker, og må brøyte en vei ingen bruker for å få budeia Marit.",
+    ],
+    sluttlinje: "En lun komedie om stolthet, og om hvor langt voksne mennesker går for å slippe å ta en telefon.",
+    lenker: {
+      bod:      "https://www.bod.no/bokhandel/",                    // TODO: direkte lenke til boka hos BoD
+      ark:      "https://www.ark.no/search?text=9788284516844",
+      norli:    "https://www.norli.no/search?query=9788284516844",
+      adlibris: "https://www.adlibris.com/no/sok?q=9788284516844",
+      lydbok:   null,                                              // TODO: lenke til lydboka
+    },
+  },
+  {
+    id: "birkebeiner",
+    tittel: "Mannen som ble borte i Birkebeinerrennet i 1958 og kom i mål i 2027",
+    humorlinje: "«Det har vært en lang tur. Man går seg litt bort i uvær.»",
+    status: "kommer",
+    lanseres: "Desember 2026",
+    omslag: "img/birkebeiner.jpg",
+    kort: "Lørdag 20. mars 2027 kommer en 91 år gammel mann på treski i mål i Birkebeinerrennet. Han startet i 1958. Arnfinn Løkken fra Åmot har startnummer 88, en sekk på nøyaktig 3,5 kilo og ett ønske: å få tiden sin registrert. Snart lurer Birken, Skiforbundet og Folkeregisteret på det samme: Har en mann som har brukt 69 år, fullført?",
+  },
+  {
+    id: "bonden",
+    tittel: "Bonden som skrev til himmelen",
+    humorlinje: "Beskjeden var sendt. Den var bare ikke lest.",
+    status: "kommer",
+    lanseres: "Februar 2027",
+    omslag: "img/bonden.jpg",
+    kort: "I førti år har en bonde på Andøya slått ett ord i året i jordet sitt. Ingen på bakken har lest dem. Så flyr en dronefotograf fra Valdres over Bleik for å ta bilder av en ny vei. I ortofotoet står det SIGNE, med førti meter høye bokstaver av uslått gras. Snart har bygda, NRK, ufoforumet og Landbruksdirektoratet hver sin teori. Birger Nordmo, 83, sier ingenting.",
+  },
+  /* status "skjult" = ligger klar, vises ikke på siden ennå */
+  {
+    id: "elefanten",
+    tittel: "Mannen som arvet en elefant",
+    humorlinje: "Onkelen var ukjent. Elefanten var det ikke, etter en uke.",
+    status: "skjult",
+    lanseres: "2027",
+    omslag: null,
+    kort: "En ungkar i Valdres arver en sirkuselefant etter en onkel han aldri har hørt om. Det går fint, helt til kommunen får vite det. Annethvert kapittel følger onkelens sirkus i 1951.",
+  },
+  {
+    id: "fisken-veit",
+    tittel: "Fisken veit",
+    undertittel: "Mannen som ikke ville si hvor fisken lå",
+    humorlinje: "Rakfisk modnes i ro. Det gjør ikke en bygd.",
+    status: "skjult",
+    lanseres: "2027",
+    omslag: null,
+    kort: "En rakfiskprodusent i Valdres nekter å si hvor fisken er lagret, og hele bygda bestemmer seg for å finne det ut. Forhistorien følger tyven Hulabakken og tyvegodset som skal ligge i en hule ved Gråkampen.",
+  },
+  {
+    id: "en-sekk-rug",
+    tittel: "Én sekk rug",
+    undertittel: "Kommunene som ikke ville slå seg sammen, men måtte likevel",
+    humorlinje: "Uenige siden 1740. Nå med felles rådhus.",
+    status: "skjult",
+    lanseres: "2027",
+    omslag: null,
+    kort: "To nabokommuner i Valdres har kranglet siden 1740 og får beskjed om å bli én. Striden står om navnet, rådhuset og en sekk rug ingen lenger husker hvem som skylder hvem.",
+  },
+];
+/* ===================== slutt på innhold ===================== */
+
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function coverHTML(b, cls) {
+  if (b.omslag) return `<img class="cover ${cls||""}" src="${esc(b.omslag)}" alt="Omslag: ${esc(fullTitle(b))}" loading="lazy" decoding="async" data-lys="${esc(b.id)}" tabindex="0" role="button" title="Vis stort">`;
+  return `<div class="cover placeholder ${cls||""}" role="img" aria-label="Omslag kommer: ${esc(fullTitle(b))}">${esc(b.tittel)}</div>`;
+}
+function fullTitle(b){ return [b.tittel, b.mellom, b.tittel2].filter(Boolean).join(" "); }
+function titleHTML(b){
+  if (b.mellom) return `${esc(b.tittel)}<span class="mid">${esc(b.mellom)}</span>${esc(b.tittel2)}`;
+  return esc(b.tittel);
+}
+const SHOPS = [["bod","Kjøp hos BoD","primary"],["ark","Ark"],["norli","Norli"],["adlibris","Adlibris"],["lydbok","Lydbok"]];
+function buyHTML(b){
+  return SHOPS.filter(([k]) => b.lenker && b.lenker[k]).map(([k,label,cls]) =>
+    `<a class="btn ${cls||""}" href="${esc(b.lenker[k])}" target="_blank" rel="noopener">${label}</a>`).join("");
+}
+
+/* Forside: nyeste bok som er ute */
+(function(){
+  const b = BOKER.filter(x => x.status === "ute").slice(-1)[0];
+  const el = document.getElementById("nyeste");
+  if (!b) { el.hidden = true; return; }
+  el.innerHTML = `
+    <div>${coverHTML(b)}</div>
+    <div>
+      <p class="eyebrow">Ny roman · ${esc(b.utgitt||"")}</p>
+      <h1>${titleHTML(b)}</h1>
+      <p class="tagline">${esc(b.humorlinje)}</p>
+      <div class="blurb">
+        <p class="hook">${esc(b.hook)}</p>
+        ${(b.tekst||[]).map(t=>`<p>${esc(t)}</p>`).join("")}
+        ${b.sluttlinje?`<p><em>${esc(b.sluttlinje)}</em></p>`:""}
+      </div>
+      <div class="buy"><span class="price">${esc(FORLAG.pris)}</span>${buyHTML(b)}</div>
+      <p class="meta">Papir og e-bok · ISBN ${esc(b.isbn)} · ${esc(FORLAG.navn)}</p>
+      <p class="next">Neste bok er allerede skrevet. <a href="#kommer">Se hva som kommer.</a></p>
+    </div>`;
+})();
+
+/* Bøkene: utgitte først, så kommende */
+(function(){
+  const list = document.getElementById("book-list");
+  const sorted = [...BOKER.filter(x=>x.status==="ute").reverse(), ...BOKER.filter(x=>x.status==="kommer")];
+  list.innerHTML = sorted.map(b => `
+    <article class="book" id="bok-${esc(b.id)}">
+      ${coverHTML(b)}
+      <div>
+        <h3>${esc(fullTitle(b))}</h3>
+        <p class="sub">${esc(b.undertittel || b.humorlinje)}</p>
+        ${b.status==="kommer" ? `<span class="when">Lanseres ${esc(b.lanseres)}</span>` : ""}
+        <p class="text">${esc(b.status==="ute" ? b.hook : b.kort)}</p>
+        ${b.status==="ute"
+          ? `<div class="buy"><span class="price">${esc(FORLAG.pris)}</span>${buyHTML(b)}</div>`
+          : `<p class="notify"><a href="#kommer-${esc(b.id)}">Få beskjed når den kommer</a></p>`}
+      </div>
+    </article>`).join("");
+})();
+
+/* Kommer */
+(function(){
+  const list = document.getElementById("coming-list");
+  list.innerHTML = BOKER.filter(x => x.status === "kommer").map(b => `
+    <article class="card" id="kommer-${esc(b.id)}">
+      ${coverHTML(b)}
+      <div>
+        <h3>${esc(b.tittel)}</h3>
+        ${b.undertittel?`<p class="sub">${esc(b.undertittel)}</p>`:""}
+        <span class="when">Lanseres ${esc(b.lanseres)}</span>
+        <p class="text">${esc(b.kort)}</p>
+      </div>
+      <form data-book="${esc(b.id)}">
+        <label for="ep-${esc(b.id)}">Få beskjed når den kommer</label>
+        <div class="row">
+          <input id="ep-${esc(b.id)}" type="email" name="email" required placeholder="din@epost.no" autocomplete="email" inputmode="email">
+          <button class="btn primary" type="submit">Gi meg beskjed</button>
+        </div>
+        <p class="privacy">Adressen brukes bare til å gi beskjed når en ny bok lanseres. Ingen nyhetsbrev, ingen videresending.</p>
+        <p class="status" aria-live="polite"></p>
+      </form>
+    </article>`).join("");
+})();
+
+/* Påmelding. På nettsiden: sendes til Google Sheets (Apps Script). I Claude-utkastet (der window.claude finnes): artefaktens database. */
+const I_UTKAST = !!window.claude?.use;
+let dbPromise = I_UTKAST ? window.claude.use("db") : Promise.resolve(null);
+async function lagrePamelding(email, bookId, bookTitle) {
+  const created = new Date().toISOString();
+  if (FORLAG.pameldingUrl && !I_UTKAST) {
+    await fetch(FORLAG.pameldingUrl, { method: "POST", mode: "no-cors",
+      body: new URLSearchParams({ epost: email, bok: bookTitle, bokId: bookId, tidspunkt: created }) });
+    return;
+  }
+  const db = await dbPromise;
+  if (!db) throw new Error("ingen lagring tilgjengelig");
+  const docId = (bookId + "__" + email).replace(/[^A-Za-z0-9_\-.~:@+]/g, "_");
+  await db.collection("signups").doc(docId).set({ email, bookId, bookTitle, created });
+}
+document.querySelectorAll("form[data-book]").forEach(form => {
+  form.addEventListener("submit", async ev => {
+    ev.preventDefault();
+    const status = form.querySelector(".status");
+    const email = form.email.value.trim().toLowerCase();
+    const bookId = form.dataset.book;
+    const book = BOKER.find(b => b.id === bookId);
+    status.className = "status"; status.textContent = "Lagrer …";
+    try {
+      await lagrePamelding(email, bookId, book ? fullTitle(book) : bookId);
+      status.className = "status ok"; status.textContent = "Notert. Du hører fra oss når boka er klar.";
+      form.email.value = "";
+    } catch (e) {
+      status.className = "status err";
+      status.textContent = "Fikk ikke lagret adressen. Send en e-post til " + FORLAG.epost + " i stedet, så ordner vi det for hånd.";
+    }
+  });
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Klikk på et omslag: vis boka stort. Stort bilde = omslag med "-stor" før filendelsen, lastes først ved klikk. */
+(function(){
+  const dlg = document.getElementById("lys"), inner = document.getElementById("lys-inner");
+  if (!dlg.showModal) return;
+  function open(id){
+    const b = BOKER.find(x => x.id === id); if (!b) return;
+    const stor = b.omslagStor || b.omslag.replace(/(\.[a-z]+)$/i, "-stor$1");
+    const text = b.status === "ute"
+      ? [b.hook && `<p class="hook">${esc(b.hook)}</p>`, ...(b.tekst||[]).map(t=>`<p>${esc(t)}</p>`), b.sluttlinje && `<p><em>${esc(b.sluttlinje)}</em></p>`].filter(Boolean).join("")
+      : `<p>${esc(b.kort)}</p>`;
+    inner.innerHTML = `
+      <button class="lys-close" type="button" aria-label="Lukk">×</button>
+      <img src="${esc(stor)}" alt="Omslag: ${esc(fullTitle(b))}" decoding="async">
+      <div>
+        <h3>${esc(fullTitle(b))}</h3>
+        <p class="sub">${esc(b.undertittel || b.humorlinje)}</p>
+        ${b.status==="kommer" ? `<span class="when">Lanseres ${esc(b.lanseres)}</span>` : ""}
+        <div class="text">${text}</div>
+        ${b.status==="ute"
+          ? `<div class="buy"><span class="price">${esc(FORLAG.pris)}</span>${buyHTML(b)}</div>`
+          : `<p class="notify" style="margin-top:16px"><a href="#kommer-${esc(b.id)}" class="btn primary" data-close>Få beskjed når den kommer</a></p>`}
+      </div>`;
+    dlg.showModal();
+  }
+  document.addEventListener("click", e => {
+    const c = e.target.closest("[data-lys]"); if (c) { open(c.dataset.lys); return; }
+    if (e.target.closest(".lys-close, [data-close]")) dlg.close();
+    else if (e.target === dlg) dlg.close();
+  });
+  document.addEventListener("keydown", e => {
+    if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-lys]")) { e.preventDefault(); open(e.target.dataset.lys); }
+  });
+})();
+
+/* Stjernehimmel */
+(function(){
+  const c = document.getElementById("stars"), ctx = c.getContext("2d");
+  let stars = [];
+  function layout(){
+    const dpr = Math.min(window.devicePixelRatio||1, 2);
+    c.width = innerWidth*dpr; c.height = innerHeight*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    const n = Math.round(innerWidth*innerHeight/9000);
+    stars = Array.from({length:n}, () => ({x:Math.random()*innerWidth, y:Math.random()*innerHeight, r:Math.random()*1.1+.2, a:Math.random()*.5+.15, p:Math.random()*6.28}));
+    draw(0);
+  }
+  function draw(t){
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    for (const s of stars){
+      const tw = reduce ? 1 : .75 + .25*Math.sin(t/1400 + s.p);
+      ctx.globalAlpha = s.a*tw; ctx.fillStyle = "#fff6e5";
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.28); ctx.fill();
+    }
+  }
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  layout(); addEventListener("resize", layout);
+  if (!reduce) (function loop(t){ draw(t); requestAnimationFrame(loop); })(0);
+})();
+</script>
+
+</body></html>
