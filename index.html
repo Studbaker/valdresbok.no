@@ -35,6 +35,9 @@ p{margin:0}
 
 /* Nav */
 header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:22px 10px;border-bottom:1px solid var(--line)}
+/* Fast topp: logo og meny blir stående når man scroller. Bakgrunnen strekkes ut til kantene. */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--sky);box-shadow:0 0 0 100vmax var(--sky);clip-path:inset(0 -100vmax)}
+@media (max-width:720px){ header{padding-block:12px 8px;gap:8px 16px} .brand-mark{height:32px} }
 .brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-size:1.35rem;text-decoration:none;letter-spacing:.02em}
 .brand-mark{height:39px;width:auto;flex:0 0 auto}
 .footer-logo{flex:1 1 100%;display:flex;justify-content:center;padding-bottom:18px}
@@ -217,7 +220,7 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
     <div class="author">
       <p>Erik Eggum har aldri skrevet en roman før. Han anser det som en klar fordel: Han visste ikke hva som var umulig, og rakk derfor å gjøre det før noen fikk sagt ifra.</p>
       <p>Han har vokst opp i Valdres og bor der fortsatt, en dal han kjenner godt nok til å dikte om den uten å bli tatt. Til daglig er han programmerer. Han flyr også drone og kartlegger Norge ovenfra, noe som har gitt ham et uvanlig godt overblikk og en viss forståelse for folk som ikke ser hva de holder på med.</p>
-      <p>Bøkene er skrevet i samarbeid med kunstig intelligens. Ideene, valgene og feilene er hans.</p>
+      <p>Romanene, omslagene og illustrasjonene er laget med bistand fra kunstig intelligens. Claude (Anthropic) og ChatGPT (OpenAI) er brukt til å utforme og bearbeide store deler av teksten, under forfatterens ledelse og ansvar. Ideene, valgene og feilene er hans.</p>
     </div>
   </section>
 
@@ -348,10 +351,10 @@ const BOKER = [
     ],
     sluttlinje: "En lun komedie om stolthet, og om hvor langt voksne mennesker går for å slippe å ta en telefon.",
     lenker: {
-      bod:      "https://www.bod.no/bokhandel/",                    // TODO: direkte lenke til boka hos BoD
+      bod:      null,                                              // BoD selger ikke direkte til lesere
       ark:      "https://www.ark.no/search?text=9788284516844",
       norli:    "https://www.norli.no/search?query=9788284516844",
-      adlibris: "https://www.adlibris.com/no/sok?q=9788284516844",
+      adlibris: null,                                              // Adlibris har lagt ned i Norge
       lydbok:   null,                                              // TODO: lenke til lydboka
     },
   },
@@ -474,10 +477,11 @@ function titleHTML(b){
   if (b.mellom) return `${esc(b.tittel)}<span class="mid">${esc(b.mellom)}</span>${esc(b.tittel2)}`;
   return esc(b.tittel);
 }
-const SHOPS = [["bod","Kjøp hos BoD","primary"],["ark","Ark"],["norli","Norli"],["adlibris","Adlibris"],["lydbok","Lydbok"]];
+const SHOPS = [["bod","BoD"],["ark","Ark"],["norli","Norli"],["adlibris","Adlibris"],["lydbok","Lydbok"]];
+/* Første butikk med lenke får den gule knappen */
 function buyHTML(b){
-  return SHOPS.filter(([k]) => b.lenker && b.lenker[k]).map(([k,label,cls]) =>
-    `<a class="btn ${cls||""}" href="${esc(b.lenker[k])}" target="_blank" rel="noopener">${label}</a>`).join("");
+  return SHOPS.filter(([k]) => b.lenker && b.lenker[k]).map(([k,label],i) =>
+    `<a class="btn ${i===0?"primary":""}" href="${esc(b.lenker[k])}" target="_blank" rel="noopener">${label}</a>`).join("");
 }
 
 /* Forside: nyeste bok som er ute */
@@ -675,6 +679,14 @@ document.querySelectorAll("a.epost").forEach(a => { a.href = "mailto:" + epost()
   const alle = () => document.querySelectorAll("canvas.kurver").forEach((c,i) => tegn(c, 1.7+i*2.3));
   alle(); addEventListener("resize", alle);
   if (document.fonts) document.fonts.ready.then(alle);
+})();
+
+/* Ankerlenker i menyen skal lande under den faste toppen */
+(function(){
+  const h = document.querySelector("header");
+  const sett = () => document.documentElement.style.scrollPaddingTop = (h.offsetHeight + 12) + "px";
+  sett(); addEventListener("resize", sett);
+  if (document.fonts) document.fonts.ready.then(sett);
 })();
 
 /* Stjernehimmel */
