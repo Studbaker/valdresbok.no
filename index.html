@@ -1,6 +1,6 @@
 <!doctype html><html lang="nb"><head><meta charset=utf8><link rel="icon" type="image/png" href="img/favicon.png"><link rel="apple-touch-icon" href="img/apple-touch-icon.png"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Valdresbok.no</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bitter:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Oswald:wght@400;600;700&family=Bitter:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
 /* Layout: one column under a night sky; the newest book opens the page like a cover, everything else is set like a back-cover text. */
 :root{
@@ -14,6 +14,12 @@
   --accent-ink:#1a1206;
   --display:'Alfa Slab One', 'Rockwell Extra Bold', Georgia, serif;
   --body:'Bitter', Georgia, 'Times New Roman', serif;
+  /* Adrian Eide: polarnatt i grafitt og is, smale versaler som på omslagene */
+  --polar:#0e1418;
+  --polar-2:#16212a;
+  --ice:#e6edf0;
+  --ice-dim:#a3b2b9;
+  --ae-display:'Oswald', 'Arial Narrow', sans-serif;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -41,6 +47,7 @@ nav a:hover,nav a:focus-visible{color:var(--cream);outline:none;text-decoration:
 /* Hero */
 .hero{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:40px;align-items:start;padding-block:48px 56px}
 .cover{width:100%;max-width:320px;aspect-ratio:135/215;border-radius:3px;box-shadow:0 18px 50px rgba(0,0,0,.55),0 2px 6px rgba(0,0,0,.4);display:block;object-fit:cover;background:var(--sky-deep)}
+.hero > h2{grid-column:1/-1;margin-bottom:-12px}
 .hero .eyebrow{margin-bottom:14px}
 .hero h1{font-size:clamp(2rem,5vw,3.2rem)}
 .hero h1 .mid{display:block;font-family:var(--body);font-style:italic;font-size:.5em;line-height:1.3;margin-block:4px}
@@ -151,6 +158,27 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
   .book .cover{max-width:96px}
   .pending{display:none}
 }
+/* Seriene: hver serie får sin egen blokk under Bøkene og Kommer */
+.serie + .serie{margin-top:48px}
+.serie-head{margin-bottom:24px;display:grid;gap:6px}
+.serie-head .eyebrow{font-size:.9rem}
+.serie-head h3{font-size:clamp(1.3rem,3vw,1.7rem)}
+.serie-head .lead{margin-bottom:0}
+.nr{font-family:var(--ae-display);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+
+/* Adrian Eide-tema: bytter fargene og titteltypen innenfor alt med klassen .ae */
+.ae{--sky:var(--polar);--cream:var(--ice);--cream-dim:var(--ice-dim);--line:rgba(230,237,240,.16);--card:rgba(230,237,240,.045);--display:var(--ae-display);color:var(--cream)}
+.ae h1,.ae h3,.ae .price,.ae .hook{text-transform:uppercase;letter-spacing:.03em}
+.ae h3{font-weight:600}
+.ae .row input{background:rgba(0,0,0,.35)}
+.panel{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--polar-2),var(--polar) 70%);border:1px solid var(--line);border-radius:6px;padding:30px 24px}
+.panel > canvas.kurver{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.panel > :not(canvas){position:relative}
+.serie.ae .serie-head h3{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:700;line-height:.95}
+.serie.ae .serie-head .lead{font-style:normal;color:var(--cream)}
+.serie-head .note{font-style:italic;color:var(--cream-dim);font-size:.95rem}
+.lys-inner.ae{background:var(--polar)}
+@media (max-width:720px){ .panel{padding:22px 16px} }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 
@@ -158,9 +186,11 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
 
 <div class="wrap">
 <header>
-  <a class="brand" href="#top"><img class="brand-mark" src="img/logo-merke.svg" alt="" width="76" height="39"><span>Valdresbok.no<small>Folk som ikke gir seg</small></span></a>
+  <a class="brand" href="#top"><img class="brand-mark" src="img/logo-merke.svg" alt="" width="76" height="39"><span>Valdresbok.no<small>Folk som ikke gir seg · Adrian Eide</small></span></a>
   <nav aria-label="Sider">
-    <a href="#boker">Bøkene</a>
+    <a href="#nyeste">Nyheter</a>
+    <a href="#serie-folk">Humor</a>
+    <a href="#serie-adrian-eide">Spenning</a>
     <a href="#kommer">Kommer</a>
     <a href="#forfatteren">Forfatteren</a>
     <a href="#signert">Signerte bøker</a>
@@ -173,14 +203,13 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
 
   <section id="boker">
     <h2>Bøkene</h2>
-    <p class="lead">Frittstående romaner. Hver bok veksler mellom nåtid og en forhistorie, som regel lagt til Valdres, og de to møtes mot slutten. Man kan lese dem i hvilken rekkefølge man vil. Forfatteren foretrekker at man leser alle.</p>
-    <div class="books" id="book-list"></div>
+    <div id="book-list"></div>
   </section>
 
   <section id="kommer">
     <h2>Kommer</h2>
     <p class="lead">Bøkene under er skrevet og på vei gjennom sluttredigering, redaktørrunder og trykking. Legg igjen e-postadressen, så får du én beskjed den dagen boka finnes.</p>
-    <div class="coming" id="coming-list"></div>
+    <div id="coming-list"></div>
   </section>
 
   <section id="forfatteren">
@@ -268,6 +297,8 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
    lanseres: "Måned ÅÅÅÅ" – vises på kortet for kommende bøker.
    omslag: filsti til bildet, eller null for midlertidig tekstomslag.
    Lenker som er null vises ikke.
+   serie: id fra SERIER. Bøker uten serie hører til «Folk som ikke gir seg».
+   nr: bokens nummer i serien, vises over tittelen (brukes i Adrian Eide).
    ===================================================================== */
 const FORLAG = {
   navn: "Valdresbok.no",
@@ -280,6 +311,24 @@ const FORLAG = {
   // Google Sheets: nettapp-lenka fra Apps Script (…/exec). Påmeldingene havner som rader i regnearket.
   pameldingUrl: "https://script.google.com/macros/s/AKfycbz9ahAGfPOBZTlLRX7p4r-gabBF9WWFlnpizfWGjK6mLYLMy8z3XSiZFTdtyngBPne2/exec",
 };
+
+/* Seriene, i den rekkefølgen de vises. tema: "ae" gir polarnatt-utseendet. */
+const SERIER = [
+  {
+    id: "folk",
+    navn: "Folk som ikke gir seg",
+    sjanger: "Humor",
+    ingress: "Frittstående romaner. Hver bok veksler mellom nåtid og en forhistorie, som regel lagt til Valdres, og de to møtes mot slutten. Man kan lese dem i hvilken rekkefølge man vil. Forfatteren foretrekker at man leser alle.",
+  },
+  {
+    id: "adrian-eide",
+    navn: "Adrian Eide",
+    sjanger: "Spenning",
+    tema: "ae",
+    ingress: "Adrian Eide driver et dronefirma. For seksten år siden var han dronefører i Afghanistan, og han har aldri sluppet natta da noen ikke ville se det han så. Nå blir han hentet nordover, igjen og igjen, når Norge står foran noe ingen har øvd på. Spenningsromaner fra nordområdene, med storpolitikk og teknikk som stemmer.",
+    note: "Hver bok er en selvstendig historie og kan leses alene, i den rekkefølgen du vil.",
+  },
+];
 
 const BOKER = [
   {
@@ -334,6 +383,39 @@ const BOKER = [
     omslag: "img/bonden.jpg",
     kort: "I førti år har en bonde på Andøya slått ett ord i året i jordet sitt. Ingen på bakken har lest dem. Så flyr en dronefotograf fra Valdres over Bleik for å ta bilder av en ny vei. I ortofotoet står det SIGNE, med førti meter høye bokstaver av uslått gras. Snart har bygda, NRK, ufoforumet og Landbruksdirektoratet hver sin teori. Birger Nordmo, 83, sier ingenting.",
   },
+  {
+    id: "morketid",
+    serie: "adrian-eide",
+    nr: 1,
+    tittel: "Mørketid",
+    undertittel: "Svalbard. Ingen sol før februar. Og noen har allerede gått i land.",
+    status: "kommer",
+    lanseres: "Desember 2026",
+    omslag: "img/morketid.jpg",
+    kort: "Desember på Svalbard. Sola er borte, og en morgen er Barentsburg tatt av russiske menn uten flagg og uten uniform. Moskva sier at det ikke er dem. Oslo kan ikke svare med våpen uten å starte en krig. Adrian Eide blir fløyet nordover med dronene sine for å se det ingen andre kan se i mørket, og må samarbeide med Ingrid Sandvik i E-tjenesten, kvinnen som en gang avfeide bildene hans. Samtidig lekker noen i Oslo. Hver beskjed regjeringen sender, er kjent i Moskva før den er framme.",
+  },
+  {
+    id: "midnattssol",
+    serie: "adrian-eide",
+    nr: 2,
+    tittel: "Midnattssol",
+    undertittel: "Kirkenes. Tre uker uten mørke. Ingen steder å gjemme seg.",
+    status: "kommer",
+    lanseres: "Februar 2027",
+    omslag: "img/midnattssol.jpg",
+    kort: "Juni i Sør-Varanger, og sola går aldri ned. Kraftlinjene langs grensa mot Russland blir sabotert, én etter én, og en russisk offiser vil hoppe av over Jakobselva. Adrian blir leid inn for å fly linjene med drone, med datteren Ella på sommerferie hos seg. Snart er han selv den politiet ser på. I lyse netter der ingenting kan gjemmes, må han finne ut hvem som vil ha Øst-Finnmark mørklagt, før avhopperen blir det neste målet.",
+  },
+  {
+    id: "snoskred",
+    serie: "adrian-eide",
+    nr: 3,
+    tittel: "Snøskred",
+    undertittel: "Ofotbanen. Én vei inn for NATO. Og noen vet når fjellet går.",
+    status: "kommer",
+    lanseres: "Mars 2027",
+    omslag: "img/snoskred.jpg",
+    kort: "Mars i Narvik. Ofotbanen er blitt NATOs korridor fra havet til Sverige, og under en stor øvelse skal tog med soldater og materiell over fjellet. Adrian skal kartlegge snøen over sporet. Men fjellsidene er lastet, toglistene lekker, og noen vet nøyaktig når det første toget går. Mens Ingrid Sandvik jakter på lekkasjen fra Kiruna, står Adrian under en fjellside som når som helst kan gå.",
+  },
   /* status "skjult" = ligger klar, vises ikke på siden ennå */
   {
     id: "elefanten",
@@ -363,6 +445,30 @@ function coverHTML(b, cls) {
   if (b.omslag) return `<img class="cover ${cls||""}" src="${esc(b.omslag)}" alt="Omslag: ${esc(fullTitle(b))}" loading="lazy" decoding="async" data-lys="${esc(b.id)}" tabindex="0" role="button" title="Vis stort">`;
   return `<div class="cover placeholder ${cls||""}" role="img" aria-label="Omslag kommer: ${esc(fullTitle(b))}">${esc(b.tittel)}</div>`;
 }
+const serieAv = b => SERIER.find(s => s.id === (b.serie || "folk")) || SERIER[0];
+const temaAv = b => serieAv(b).tema || "";
+const nrHTML = b => b.nr ? `<p class="nr">${esc(serieAv(b).navn)} · Bok ${esc(b.nr)}</p>` : "";
+
+/* Deler en bokliste i én blokk per serie. visIngress: vis seriens omtale (under Bøkene). */
+function serieBlokker(boker, listeKlasse, kortHTML, visIngress){
+  return SERIER.map(s => {
+    const egne = boker.filter(b => serieAv(b) === s);
+    if (!egne.length) return "";
+    const tema = s.tema ? ` ${s.tema} panel` : "";
+    return `
+    <div class="serie${tema}"${visIngress ? ` id="serie-${esc(s.id)}"` : ""}>
+      ${s.tema ? `<canvas class="kurver" aria-hidden="true"></canvas>` : ""}
+      <div class="serie-head">
+        <p class="eyebrow">${esc(s.sjanger)}</p>
+        <h3>${esc(s.navn)}</h3>
+        ${visIngress && s.ingress ? `<p class="lead">${esc(s.ingress)}</p>` : ""}
+        ${visIngress && s.note ? `<p class="note">${esc(s.note)}</p>` : ""}
+      </div>
+      <div class="${listeKlasse}">${egne.map(kortHTML).join("")}</div>
+    </div>`;
+  }).join("");
+}
+
 function fullTitle(b){ return [b.tittel, b.mellom, b.tittel2].filter(Boolean).join(" "); }
 function titleHTML(b){
   if (b.mellom) return `${esc(b.tittel)}<span class="mid">${esc(b.mellom)}</span>${esc(b.tittel2)}`;
@@ -379,10 +485,12 @@ function buyHTML(b){
   const b = BOKER.filter(x => x.status === "ute").slice(-1)[0];
   const el = document.getElementById("nyeste");
   if (!b) { el.hidden = true; return; }
+  if (temaAv(b)) el.classList.add(temaAv(b));
   el.innerHTML = `
+    <h2>Nyheter</h2>
     <div>${coverHTML(b)}</div>
     <div>
-      <p class="eyebrow">Ny roman · ${esc(b.utgitt||"")}</p>
+      <p class="eyebrow">Ny roman · ${esc(serieAv(b).navn)} · ${esc(b.utgitt||"")}</p>
       <h1>${titleHTML(b)}</h1>
       <p class="tagline">${esc(b.humorlinje)}</p>
       <div class="blurb">
@@ -400,10 +508,11 @@ function buyHTML(b){
 (function(){
   const list = document.getElementById("book-list");
   const sorted = [...BOKER.filter(x=>x.status==="ute").reverse(), ...BOKER.filter(x=>x.status==="kommer")];
-  list.innerHTML = sorted.map(b => `
+  list.innerHTML = serieBlokker(sorted, "books", b => `
     <article class="book" id="bok-${esc(b.id)}">
       ${coverHTML(b)}
       <div>
+        ${nrHTML(b)}
         <h3>${esc(fullTitle(b))}</h3>
         <p class="sub">${esc(b.undertittel || b.humorlinje)}</p>
         ${b.status==="kommer" ? `<span class="when">Lanseres ${esc(b.lanseres)}</span>` : ""}
@@ -412,7 +521,7 @@ function buyHTML(b){
           ? `<div class="buy"><span class="price">${esc(FORLAG.pris)}</span>${buyHTML(b)}</div>`
           : `<p class="notify"><a href="#kommer-${esc(b.id)}">Få beskjed når den kommer</a></p>`}
       </div>
-    </article>`).join("");
+    </article>`, true);
 })();
 
 /* Påmeldingsskjema – brukes både på kortene under Kommer og i det store vinduet */
@@ -434,17 +543,18 @@ function signupHTML(b, idPrefix){
 /* Kommer */
 (function(){
   const list = document.getElementById("coming-list");
-  list.innerHTML = BOKER.filter(x => x.status === "kommer").map(b => `
+  list.innerHTML = serieBlokker(BOKER.filter(x => x.status === "kommer"), "coming", b => `
     <article class="card" id="kommer-${esc(b.id)}">
       ${coverHTML(b)}
       <div>
+        ${nrHTML(b)}
         <h3>${esc(b.tittel)}</h3>
         ${b.undertittel?`<p class="sub">${esc(b.undertittel)}</p>`:""}
         <span class="when">Lanseres ${esc(b.lanseres)}</span>
         <p class="text">${esc(b.kort)}</p>
       </div>
       ${signupHTML(b, "ep-")}
-    </article>`).join("");
+    </article>`, false);
 })();
 
 /* Påmelding. På nettsiden: sendes til Google Sheets (Apps Script). I Claude-utkastet (der window.claude finnes): artefaktens database. */
@@ -512,10 +622,12 @@ document.querySelectorAll("a.epost").forEach(a => { a.href = "mailto:" + epost()
     const text = b.status === "ute"
       ? [b.hook && `<p class="hook">${esc(b.hook)}</p>`, ...(b.tekst||[]).map(t=>`<p>${esc(t)}</p>`), b.sluttlinje && `<p><em>${esc(b.sluttlinje)}</em></p>`].filter(Boolean).join("")
       : `<p>${esc(b.kort)}</p>`;
+    inner.className = "lys-inner " + temaAv(b);
     inner.innerHTML = `
       <button class="lys-close" type="button" aria-label="Lukk">×</button>
       <img src="${esc(stor)}" alt="Omslag: ${esc(fullTitle(b))}" decoding="async">
       <div>
+        ${nrHTML(b)}
         <h3>${esc(fullTitle(b))}</h3>
         <p class="sub">${esc(b.undertittel || b.humorlinje)}</p>
         ${b.status==="kommer" ? `<span class="when">Lanseres ${esc(b.lanseres)}</span>` : ""}
@@ -534,6 +646,35 @@ document.querySelectorAll("a.epost").forEach(a => { a.href = "mailto:" + epost()
   document.addEventListener("keydown", e => {
     if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-lys]")) { e.preventDefault(); open(e.target.dataset.lys); }
   });
+})();
+
+/* Høydekurver bak Adrian Eide-blokkene, som et kart sett fra drona */
+(function(){
+  function tegn(c, seed){
+    const r = c.getBoundingClientRect(); if (!r.width) return;
+    const dpr = Math.min(window.devicePixelRatio||1, 2), ctx = c.getContext("2d");
+    c.width = r.width*dpr; c.height = r.height*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    const g = 14, cols = Math.ceil(r.width/g)+1, rows = Math.ceil(r.height/g)+1;
+    const f = (x,y) => Math.sin(x*.0061+seed)*Math.cos(y*.0047-seed*.7) + .6*Math.sin((x+y)*.0093+seed*1.3) + .35*Math.cos(x*.017-y*.011+seed);
+    const v = []; for (let j=0;j<rows;j++){ v[j]=[]; for (let i=0;i<cols;i++) v[j][i]=f(i*g,j*g); }
+    ctx.strokeStyle = "rgba(170,200,212,.10)"; ctx.lineWidth = .8;
+    for (let k=-1.6;k<=1.6;k+=.2){
+      ctx.beginPath();
+      for (let j=0;j<rows-1;j++) for (let i=0;i<cols-1;i++){
+        const a=v[j][i], b=v[j][i+1], cc=v[j+1][i+1], d=v[j+1][i], x=i*g, y=j*g, p=[];
+        const e = (v1,v2,x1,y1,x2,y2) => { const t=(k-v1)/(v2-v1); p.push([x1+(x2-x1)*t, y1+(y2-y1)*t]); };
+        if ((a<k)!==(b<k)) e(a,b,x,y,x+g,y);
+        if ((b<k)!==(cc<k)) e(b,cc,x+g,y,x+g,y+g);
+        if ((cc<k)!==(d<k)) e(cc,d,x+g,y+g,x,y+g);
+        if ((d<k)!==(a<k)) e(d,a,x,y+g,x,y);
+        for (let q=0;q+1<p.length;q+=2){ ctx.moveTo(p[q][0],p[q][1]); ctx.lineTo(p[q+1][0],p[q+1][1]); }
+      }
+      ctx.stroke();
+    }
+  }
+  const alle = () => document.querySelectorAll("canvas.kurver").forEach((c,i) => tegn(c, 1.7+i*2.3));
+  alle(); addEventListener("resize", alle);
+  if (document.fonts) document.fonts.ready.then(alle);
 })();
 
 /* Stjernehimmel */
