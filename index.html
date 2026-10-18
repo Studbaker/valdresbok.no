@@ -497,10 +497,10 @@ function titleHTML(b){
   return esc(b.tittel);
 }
 const SHOPS = [["bod","BoD"],["ark","Ark"],["norli","Norli"],["adlibris","Adlibris"],["lydbok","Lydbok"]];
-/* Første butikk med lenke får den gule knappen */
+/* Alle kjøpsknapper er gule */
 function buyHTML(b){
   return SHOPS.filter(([k]) => b.lenker && b.lenker[k]).map(([k,label],i) =>
-    `<a class="btn ${i===0?"primary":""}" href="${esc(b.lenker[k])}" target="_blank" rel="noopener">${label}</a>`).join("");
+    `<a class="btn primary" href="${esc(b.lenker[k])}" target="_blank" rel="noopener">${label}</a>`).join("");
 }
 
 /* Forside: nyeste bok som er ute */
