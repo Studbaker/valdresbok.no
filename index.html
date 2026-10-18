@@ -1,6 +1,33 @@
-<!doctype html><html lang="nb"><head><meta charset=utf8><link rel="icon" type="image/png" href="img/favicon.png"><link rel="apple-touch-icon" href="img/apple-touch-icon.png"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Valdresbok.no</title>
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Valdresbok.no – romaner av Erik Eggum</title>
+<meta name="description" content="Hytteforeningen som erklærte seg selvstendig og flere romaner av Erik Eggum. Humor fra Valdres og spenning fra nordområdene. Kjøp hos Ark og Norli.">
+<link rel="canonical" href="https://valdresbok.no/">
+<!-- Delingskort for Facebook, Messenger, SMS osv. Disse leser ikke JavaScript, så teksten står her fast.
+     Bytt tittel, tekst og bilde når en ny bok blir hovedbok. Bildet er 1200 × 630 px (img/<id>-deling.jpg). -->
+<meta property="og:type" content="book">
+<meta property="og:site_name" content="Valdresbok.no">
+<meta property="og:locale" content="nb_NO">
+<meta property="og:url" content="https://valdresbok.no/">
+<meta property="og:title" content="Hytteforeningen som erklærte seg selvstendig">
+<meta property="og:description" content="Fjorten hytter. Én vei. Null brøyting. Ny roman fra Valdres av Erik Eggum, 279 kr hos Ark og Norli.">
+<meta property="og:image" content="https://valdresbok.no/img/hytteforeningen-deling.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Omslaget til Hytteforeningen som erklærte seg selvstendig">
+<meta property="book:isbn" content="9788284516844">
+<meta property="book:author" content="Erik Eggum">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0b1a3a">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Oswald:wght@400;600;700&family=Bitter:ital,wght@0,400;0,600;1,400&display=swap">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
 <style>
 /* Layout: one column under a night sky; the newest book opens the page like a cover, everything else is set like a back-cover text. */
 :root{
@@ -37,7 +64,10 @@ p{margin:0}
 header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:22px 10px;border-bottom:1px solid var(--line)}
 /* Fast topp: logo og meny blir stående når man scroller. Bakgrunnen strekkes ut til kantene. */
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--sky);box-shadow:0 0 0 100vmax var(--sky);clip-path:inset(0 -100vmax)}
-@media (max-width:720px){ header{padding-block:12px 8px;gap:8px 16px} .brand-mark{height:32px} }
+@media (max-width:720px){
+  header{padding-block:10px 0;gap:4px 16px}
+  .brand-mark{height:32px}
+}
 .brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-size:1.35rem;text-decoration:none;letter-spacing:.02em}
 .brand-mark{height:39px;width:auto;flex:0 0 auto}
 .footer-logo{flex:1 1 100%;display:flex;justify-content:center;padding-bottom:18px}
@@ -100,7 +130,8 @@ section h2{font-size:clamp(1.6rem,3.5vw,2.2rem);margin-bottom:8px}
 .hero .cover.placeholder{font-size:1.4rem;padding:30px 24px}
 
 /* Bøkene */
-.books{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.books{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.book .text{max-width:62ch}
 .book{display:grid;grid-template-columns:120px minmax(0,1fr);gap:18px;align-content:start;min-width:0;padding-block:6px}
 .book .cover{max-width:120px;border-radius:2px;box-shadow:0 10px 24px rgba(0,0,0,.5)}
 .book h3{font-size:1.1rem;line-height:1.25}
@@ -155,6 +186,11 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
 @media (max-width:720px){
   .hero{grid-template-columns:1fr;gap:28px;padding-block:32px 40px}
   .cover{max-width:240px}
+  /* Pris og kjøpsknapper rett under tittelen, før omtalen */
+  .hero-text{display:flex;flex-direction:column}
+  .hero-text .blurb{order:1}
+  .hero-text .next{order:2}
+  .hero-text .buy{margin-top:20px}
   .card{grid-template-columns:80px minmax(0,1fr)}
   .card .cover{max-width:80px}
   .book{grid-template-columns:96px minmax(0,1fr)}
@@ -183,7 +219,18 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
 .lys-inner.ae{background:var(--polar)}
 @media (max-width:720px){ .panel{padding:22px 16px} }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Mobil: menyen på én linje som kan sveipes sidelengs, så den faste toppen tar mindre plass */
+@media (max-width:720px){
+  nav{flex-wrap:nowrap;overflow-x:auto;width:100%;gap:0 18px;padding-bottom:6px;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+  nav::-webkit-scrollbar{display:none}
+  nav a{white-space:nowrap;flex:0 0 auto}
+  nav a:last-child{padding-right:28px}
+  .hero{padding-top:24px}
+  .hero .cover{max-width:200px}
+}
 </style>
+</head>
+<body>
 
 <div id="sky"><canvas id="stars" aria-hidden="true"></canvas></div>
 
@@ -463,28 +510,31 @@ const BOKER = [
 
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
-function coverHTML(b, cls) {
-  if (b.omslag) return `<img class="cover ${cls||""}" src="${esc(b.omslag)}" alt="Omslag: ${esc(fullTitle(b))}" loading="lazy" decoding="async" data-lys="${esc(b.id)}" tabindex="0" role="button" title="Vis stort">`;
+function coverHTML(b, cls, forst) {
+  if (b.omslag) return `<img class="cover ${cls||""}" src="${esc(b.omslag)}" alt="Omslag: ${esc(fullTitle(b))}" ${forst ? `fetchpriority="high"` : `loading="lazy"`} decoding="async" data-lys="${esc(b.id)}" tabindex="0" role="button" title="Vis stort">`;
   return `<div class="cover placeholder ${cls||""}" role="img" aria-label="Omslag kommer: ${esc(fullTitle(b))}">${esc(b.tittel)}</div>`;
 }
 const serieAv = b => SERIER.find(s => s.id === (b.serie || "folk")) || SERIER[0];
 const temaAv = b => serieAv(b).tema || "";
 const nrHTML = b => b.nr ? `<p class="nr">${esc(serieAv(b).navn)} · Bok ${esc(b.nr)}</p>` : "";
 
-/* Deler en bokliste i én blokk per serie. visIngress: vis seriens omtale (under Bøkene). */
+/* Deler en bokliste i én blokk per serie. visIngress(s): vis seriens omtale og meny-ankeret her.
+   Omtalen står under Bøkene når serien har en utgitt bok, ellers under Kommer. */
+const harUtgitt = s => BOKER.some(b => b.status === "ute" && serieAv(b) === s);
 function serieBlokker(boker, listeKlasse, kortHTML, visIngress){
   return SERIER.map(s => {
     const egne = boker.filter(b => serieAv(b) === s);
     if (!egne.length) return "";
+    const vis = visIngress(s);
     const tema = s.tema ? ` ${s.tema} panel` : "";
     return `
-    <div class="serie${tema}"${visIngress ? ` id="serie-${esc(s.id)}"` : ""}>
+    <div class="serie${tema}"${vis ? ` id="serie-${esc(s.id)}"` : ""}>
       ${s.tema ? `<canvas class="kurver" aria-hidden="true"></canvas>` : ""}
       <div class="serie-head">
         <p class="eyebrow">${esc(s.sjanger)}</p>
         <h3>${esc(s.navn)}</h3>
-        ${visIngress && s.ingress ? `<p class="lead">${esc(s.ingress)}</p>` : ""}
-        ${visIngress && s.note ? `<p class="note">${esc(s.note)}</p>` : ""}
+        ${vis && s.ingress ? `<p class="lead">${esc(s.ingress)}</p>` : ""}
+        ${vis && s.note ? `<p class="note">${esc(s.note)}</p>` : ""}
       </div>
       <div class="${listeKlasse}">${egne.map(kortHTML).join("")}</div>
     </div>`;
@@ -511,8 +561,8 @@ function buyHTML(b){
   if (temaAv(b)) el.classList.add(temaAv(b));
   el.innerHTML = `
     <h2>Nyheter</h2>
-    <div>${coverHTML(b)}</div>
-    <div>
+    <div>${coverHTML(b, "", true)}</div>
+    <div class="hero-text">
       <p class="eyebrow">Ny roman · ${esc(serieAv(b).navn)} · ${esc(b.utgitt||"")}</p>
       <h1>${titleHTML(b)}</h1>
       <p class="tagline">${esc(b.humorlinje)}</p>
@@ -527,10 +577,10 @@ function buyHTML(b){
     </div>`;
 })();
 
-/* Bøkene: utgitte først, så kommende */
+/* Bøkene: bare de som er ute, nyeste først. Kommende bøker står under Kommer. */
 (function(){
   const list = document.getElementById("book-list");
-  const sorted = [...BOKER.filter(x=>x.status==="ute").reverse(), ...BOKER.filter(x=>x.status==="kommer")];
+  const sorted = BOKER.filter(x=>x.status==="ute").reverse();
   list.innerHTML = serieBlokker(sorted, "books", b => `
     <article class="book" id="bok-${esc(b.id)}">
       ${coverHTML(b)}
@@ -544,7 +594,7 @@ function buyHTML(b){
           ? `<div class="buy"><span class="price">${esc(FORLAG.pris)}</span>${buyHTML(b)}</div>`
           : `<p class="notify"><a href="#kommer-${esc(b.id)}">Få beskjed når den kommer</a></p>`}
       </div>
-    </article>`, true);
+    </article>`, harUtgitt);
 })();
 
 /* Påmeldingsskjema – brukes både på kortene under Kommer og i det store vinduet */
@@ -577,7 +627,7 @@ function signupHTML(b, idPrefix){
         <p class="text">${esc(b.kort)}</p>
       </div>
       ${signupHTML(b, "ep-")}
-    </article>`, false);
+    </article>`, s => !harUtgitt(s));
 })();
 
 /* Påmelding. På nettsiden: sendes til Google Sheets (Apps Script). I Claude-utkastet (der window.claude finnes): artefaktens database. */
@@ -733,4 +783,5 @@ document.querySelectorAll("a.epost").forEach(a => { a.href = "mailto:" + epost()
 })();
 </script>
 
-</body></html>
+</body>
+</html>
