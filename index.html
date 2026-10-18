@@ -41,7 +41,7 @@
   --accent-ink:#1a1206;
   --display:'Alfa Slab One', 'Rockwell Extra Bold', Georgia, serif;
   --body:'Bitter', Georgia, 'Times New Roman', serif;
-  /* Adrian Eide: polarnatt i grafitt og is, smale versaler som på omslagene */
+  /* Kai Tofte: polarnatt i grafitt og is, smale versaler som på omslagene */
   --polar:#0e1418;
   --polar-2:#16212a;
   --ice:#e6edf0;
@@ -205,7 +205,7 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
 .serie-head .lead{margin-bottom:0}
 .nr{font-family:var(--ae-display);font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
 
-/* Adrian Eide-tema: bytter fargene og titteltypen innenfor alt med klassen .ae */
+/* Kai Tofte-tema: bytter fargene og titteltypen innenfor alt med klassen .ae */
 .ae{--sky:var(--polar);--cream:var(--ice);--cream-dim:var(--ice-dim);--line:rgba(230,237,240,.16);--card:rgba(230,237,240,.045);--display:var(--ae-display);color:var(--cream)}
 .ae h1,.ae h3,.ae .price,.ae .hook{text-transform:uppercase;letter-spacing:.03em}
 .ae h3{font-weight:600}
@@ -236,11 +236,11 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
 
 <div class="wrap">
 <header>
-  <a class="brand" href="#top"><img class="brand-mark" src="img/logo-merke.svg" alt="" width="76" height="39"><span>Valdresbok.no<small>Folk som ikke gir seg · Adrian Eide</small></span></a>
+  <a class="brand" href="#top"><img class="brand-mark" src="img/logo-merke.svg" alt="" width="76" height="39"><span>Valdresbok.no<small>Folk som ikke gir seg · Kai Tofte</small></span></a>
   <nav aria-label="Sider">
     <a href="#nyeste">Nyheter</a>
     <a href="#serie-folk">Humor</a>
-    <a href="#serie-adrian-eide">Spenning</a>
+    <a href="#serie-kai-tofte">Spenning</a>
     <a href="#kommer">Kommer</a>
     <a href="#forfatteren">Forfatteren</a>
     <a href="#signert">Signerte bøker</a>
@@ -367,7 +367,7 @@ footer a:hover{text-decoration:underline;text-underline-offset:4px}
    omslag: filsti til bildet, eller null for midlertidig tekstomslag.
    Lenker som er null vises ikke.
    serie: id fra SERIER. Bøker uten serie hører til «Folk som ikke gir seg».
-   nr: bokens nummer i serien, vises over tittelen (brukes i Adrian Eide).
+   nr: bokens nummer i serien, vises over tittelen (brukes i Kai Tofte).
    ===================================================================== */
 const FORLAG = {
   navn: "Valdresbok.no",
@@ -390,11 +390,11 @@ const SERIER = [
     ingress: "Frittstående romaner. Hver bok veksler mellom nåtid og en forhistorie, som regel lagt til Valdres, og de to møtes mot slutten. Man kan lese dem i hvilken rekkefølge man vil. Forfatteren foretrekker at man leser alle.",
   },
   {
-    id: "adrian-eide",
-    navn: "Adrian Eide",
+    id: "kai-tofte",
+    navn: "Kai Tofte",
     sjanger: "Spenning",
     tema: "ae",
-    ingress: "Adrian Eide driver et dronefirma. For seksten år siden var han dronefører i Afghanistan, og han har aldri sluppet natta da noen ikke ville se det han så. Nå blir han hentet nordover, igjen og igjen, når Norge står foran noe ingen har øvd på. Spenningsromaner fra nordområdene, med storpolitikk og teknikk som stemmer.",
+    ingress: "Kai Tofte driver et dronefirma. For seksten år siden var han dronefører i Afghanistan, og han har aldri sluppet natta da noen ikke ville se det han så. Nå blir han hentet nordover, igjen og igjen, når Norge står foran noe ingen har øvd på. Spenningsromaner fra nordområdene, med storpolitikk og teknikk som stemmer.",
     note: "Hver bok er en selvstendig historie og kan leses alene, i den rekkefølgen du vil.",
   },
 ];
@@ -454,36 +454,36 @@ const BOKER = [
   },
   {
     id: "morketid",
-    serie: "adrian-eide",
+    serie: "kai-tofte",
     nr: 1,
     tittel: "Mørketid",
     undertittel: "Svalbard. Ingen sol før februar. Og noen har allerede gått i land.",
     status: "kommer",
     lanseres: "Desember 2026",
     omslag: "img/morketid.jpg",
-    kort: "Desember på Svalbard. Sola er borte, og en morgen er Barentsburg tatt av russiske menn uten flagg og uten uniform. Moskva sier at det ikke er dem. Oslo kan ikke svare med våpen uten å starte en krig. Adrian Eide blir fløyet nordover med dronene sine for å se det ingen andre kan se i mørket, og må samarbeide med Ingrid Sandvik i E-tjenesten, kvinnen som en gang avfeide bildene hans. Samtidig lekker noen i Oslo. Hver beskjed regjeringen sender, er kjent i Moskva før den er framme.",
+    kort: "Desember på Svalbard. Sola er borte, og en morgen er Barentsburg tatt av russiske menn uten flagg og uten uniform. Moskva sier at det ikke er dem. Oslo kan ikke svare med våpen uten å starte en krig. Kai Tofte blir fløyet nordover med dronene sine for å se det ingen andre kan se i mørket, og må samarbeide med Ingrid Sandvik i E-tjenesten, kvinnen som en gang avfeide bildene hans. Samtidig lekker noen i Oslo. Hver beskjed regjeringen sender, er kjent i Moskva før den er framme.",
   },
   {
     id: "midnattssol",
-    serie: "adrian-eide",
+    serie: "kai-tofte",
     nr: 2,
     tittel: "Midnattssol",
     undertittel: "Kirkenes. Tre uker uten mørke. Ingen steder å gjemme seg.",
     status: "kommer",
     lanseres: "Februar 2027",
     omslag: "img/midnattssol.jpg",
-    kort: "Juni i Sør-Varanger, og sola går aldri ned. Kraftlinjene langs grensa mot Russland blir sabotert, én etter én, og en russisk offiser vil hoppe av over Jakobselva. Adrian blir leid inn for å fly linjene med drone, med datteren Ella på sommerferie hos seg. Snart er han selv den politiet ser på. I lyse netter der ingenting kan gjemmes, må han finne ut hvem som vil ha Øst-Finnmark mørklagt, før avhopperen blir det neste målet.",
+    kort: "Juni i Sør-Varanger, og sola går aldri ned. Kraftlinjene langs grensa mot Russland blir sabotert, én etter én, og en russisk offiser vil hoppe av over Jakobselva. Kai blir leid inn for å fly linjene med drone, med datteren Ella på sommerferie hos seg. Snart er han selv den politiet ser på. I lyse netter der ingenting kan gjemmes, må han finne ut hvem som vil ha Øst-Finnmark mørklagt, før avhopperen blir det neste målet.",
   },
   {
     id: "snoskred",
-    serie: "adrian-eide",
+    serie: "kai-tofte",
     nr: 3,
     tittel: "Snøskred",
     undertittel: "Ofotbanen. Én vei inn for NATO. Og noen vet når fjellet går.",
     status: "kommer",
     lanseres: "Mars 2027",
     omslag: "img/snoskred.jpg",
-    kort: "Mars i Narvik. Ofotbanen er blitt NATOs korridor fra havet til Sverige, og under en stor øvelse skal tog med soldater og materiell over fjellet. Adrian skal kartlegge snøen over sporet. Men fjellsidene er lastet, toglistene lekker, og noen vet nøyaktig når det første toget går. Mens Ingrid Sandvik jakter på lekkasjen fra Kiruna, står Adrian under en fjellside som når som helst kan gå.",
+    kort: "Mars i Narvik. Ofotbanen er blitt NATOs korridor fra havet til Sverige, og under en stor øvelse skal tog med soldater og materiell over fjellet. Kai skal kartlegge snøen over sporet. Men fjellsidene er lastet, toglistene lekker, og noen vet nøyaktig når det første toget går. Mens Ingrid Sandvik jakter på lekkasjen fra Kiruna, står Kai under en fjellside som når som helst kan gå.",
   },
   /* status "skjult" = ligger klar, vises ikke på siden ennå */
   {
@@ -721,7 +721,7 @@ document.querySelectorAll("a.epost").forEach(a => { a.href = "mailto:" + epost()
   });
 })();
 
-/* Høydekurver bak Adrian Eide-blokkene, som et kart sett fra drona */
+/* Høydekurver bak Kai Tofte-blokkene, som et kart sett fra drona */
 (function(){
   function tegn(c, seed){
     const r = c.getBoundingClientRect(); if (!r.width) return;
