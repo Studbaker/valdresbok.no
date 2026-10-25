@@ -701,7 +701,7 @@ document.querySelectorAll("a.epost").forEach(a => { a.href = "mailto:" + epost()
   const dlg = document.getElementById("lys"), inner = document.getElementById("lys-inner");
   if (!dlg.showModal) return;
   function open(id){
-    const b = BOKER.find(x => x.id === id); if (!b) return;
+    const b = BOKER.find(x => x.id === id); if (!b || b.status === "skjult") return;
     const stor = b.omslagStor || b.omslag.replace(/(\.[a-z]+)$/i, "-stor$1");
     const text = b.status === "ute"
       ? [b.hook && `<p class="hook">${esc(b.hook)}</p>`, ...(b.tekst||[]).map(t=>`<p>${esc(t)}</p>`), b.sluttlinje && `<p><em>${esc(b.sluttlinje)}</em></p>`].filter(Boolean).join("")
@@ -730,6 +730,11 @@ document.querySelectorAll("a.epost").forEach(a => { a.href = "mailto:" + epost()
   document.addEventListener("keydown", e => {
     if ((e.key === "Enter" || e.key === " ") && e.target.matches("[data-lys]")) { e.preventDefault(); open(e.target.dataset.lys); }
   });
+  /* Lenke rett til en bok: valdresbok.no/#bok-<id> åpner kortet. Når det lukkes, står leseren på forsiden. */
+  function fraLenke(){ const m = location.hash.match(/^#bok-(.+)$/); if (m) open(decodeURIComponent(m[1])); }
+  dlg.addEventListener("close", () => { if (location.hash.startsWith("#bok-")) history.replaceState(null, "", location.pathname + location.search); });
+  addEventListener("hashchange", fraLenke);
+  fraLenke();
 })();
 
 /* Høydekurver bak Kai Tofte-blokkene, som et kart sett fra drona */
